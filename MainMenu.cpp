@@ -95,6 +95,8 @@ void cashier()
 
    cout << "\t ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
 
+   cout<<"\n\n Thank you for shopping at Serendipity!!! Have a nice day\n\n"<<endl;
+
 }
 
 void setbookdetails()
@@ -204,4 +206,44 @@ void invmenu()
 
       cout << "Enter ur choice" << endl;
    }
+
+   void reports()
+
+   {
+
+   int ch;
+
+   cout << endl;
+
+   do
+
+   {
+
+   cout << "***************************************" << endl;
+
+   cout << "\t Serendipity Booksellers" << endl;
+
+   cout << "***************************************" << endl;
+
+   cout << "\t Reports Module" << endl;
+
+   cout << "\t ================" << endl;
+
+   cout << "\t 1.Inventory Listing" << endl;
+
+   cout << "\t 2.Inventory WholeSale value" << endl;
+
+   cout << "\t 3.Inventory Retail Value" << endl;
+
+   cout << "\t 4.Listing by Quantity" << endl;
+
+   cout << "\t 5.Listing by Cost" << endl;
+
+   cout << "\t 6.Listing by Age" << endl;
+
+   cout << "\t 7.Return to the main menu" << endl;
+
+   cout << "Enter ur choice" << endl;
+   }
+
 */
