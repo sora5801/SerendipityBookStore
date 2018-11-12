@@ -1,14 +1,17 @@
 #include <iostream>
+#include <algorithm>
+#include <time.h>
 #include <iomanip>
-#include "book.h"
+#include <fstream>
 #include "Inventory.h"
+
 using namespace std;
 
-void menu();
-void cashier();
-void setbookdetails();
-void editmenu();
-void invmenu();
+#define TAX_RATE 0.1
+
+void inputInventory(Inventory&);
+
+void outputInventory(Inventory&);
 
 void mainMenu(Inventory&);
 
@@ -16,13 +19,434 @@ void cashierMenu(Inventory&);
 
 void inventoryMenu(Inventory&);
 
+void editBook(book&);
+
 void reportMenu(Inventory&);
 
+bool is_number(const string&);
+void displayBook(book);
+void displayList(Inventory&);
 
 int main()
 {
-   menu();
-   mainMenu();
+   Inventory list;
+   inputInventory(list);
+   mainMenu(list);
+   outputInventory(list);
+   system("pause");
+   return 0;
+}
+
+void inputInventory(Inventory &list)
+{
+   ifstream inFile;
+   inFile.open("Inventory.txt");
+   if (!inFile.fail())
+   {
+      string isbn, title, author, publisher, date;
+      int qty;
+      double cost, price;
+      book bk;
+      while (!inFile.eof())
+      {
+         getline(inFile, isbn);
+         getline(inFile, title);
+         getline(inFile, author);
+         getline(inFile, publisher);
+         getline(inFile, date);
+         inFile >> qty >> cost >> price;
+         inFile.ignore();
+         bk.setBook(isbn, title, author, publisher, date, qty, cost, price, nullptr);
+         list.addBook(bk);
+      }
+      cout << "Read Inventory Database File Complete!" << endl << endl;
+   }
+   inFile.close();
+}
+
+void outputInventory(Inventory &list)
+{
+   ofstream outFile;
+   outFile.open("Inventory.txt");
+   if (!outFile.fail())
+   {
+      book * arr = list.returnHead();
+      while (arr)
+      {
+         outFile << arr->getISBN() << endl;
+         outFile << arr->gettitle() << endl;
+         outFile << arr->getauthor() << endl;
+         outFile << arr->getpublisher() << endl;
+         outFile << arr->getdateAdded() << endl;
+         outFile << arr->getqtyonHand() << endl;
+         outFile << arr->getwholesaleCost() << endl;
+         if (arr->getnextptr())
+            outFile << arr->getretailPrice() << endl;
+         else
+            outFile << arr->getretailPrice();
+         arr = arr->getnextptr();
+      }
+   }
+   outFile.close();
+}
+
+void mainMenu(Inventory& list)
+{
+   int option;
+   cout << setw(30) << "Main Menu" << endl << endl;
+   cout << "1. Cashier Module" << endl
+      << "2. Inventory Database Module" << endl
+      << "3. Report Module" << endl
+      << "4. Quit the program" << endl
+      << "Enter your option: ";
+   cin >> option;
+   switch (option)
+   {
+   case 1:
+      cashierMenu(list);
+      break;
+   case 2:
+      inventoryMenu(list);
+      break;
+   case 3:
+      reportMenu(list);
+      break;
+   case 4:
+      cout << "Thank you for using the program!" << endl;
+      break;
+   default:
+      cout << "You entered wrong option! Please try again!" << endl;
+      mainMenu(list);
+      break;
+   }
+
+}
+
+void cashierMenu(Inventory &list)
+{
+   string item;
+   int n;
+   char date[9], option = 'Y';
+   double subtotal = 0, tax, total;
+   _strdate_s(date);
+   book *bk;
+   cout << "Cashier Module" << endl << endl;
+   cout << "Team 6 Book Seller" << endl << endl << "Date: " << date << endl << endl;
+   cout << left << setw(5) << "Qty"
+      << setw(10) << "ISBN"
+      << setw(30) << "Title"
+      << setw(8) << "Price"
+      << setw(10) << "Total" << endl;
+   cout << "-----------------------------------------------------------------------------" << endl;
+
+   while (option == 'Y' || option == 'y')
+   {
+      cout << "Enter book title or ISBN: ";
+      cin.ignore();
+      getline(cin, item);
+      cout << "Enter number of copies: ";
+      cin >> n;
+      if (is_number(item))
+         bk = list.searchByISBN(item);
+      else
+         bk = list.searchByTitle(item);
+      if (bk)
+      {
+         if (bk->getqtyonHand() > n)
+         {
+            cout << "Purchase complete!" << endl;
+            bk->setqtyonHand(bk->getqtyonHand() - n);
+            subtotal += n * bk->getretailPrice();
+            cout << fixed;
+            cout << left << setw(5) << n
+               << setw(10) << bk->getISBN()
+               << setw(30) << bk->gettitle()
+               << right << setw(8) << setprecision(2) << bk->getretailPrice()
+               << setw(10) << n * bk->getretailPrice() << endl;
+         }
+         else
+            cout << "Not enough books in the inventory! Please try again!" << endl;
+      }
+      else
+         cout << "This item is not in the inventory! Please try again!" << endl;
+      cout << "Press Y to buy more item or N to finish and get bill: ";
+      cin >> option;
+   }
+   tax = subtotal * TAX_RATE;
+   total = subtotal + tax;
+   cout << left << setw(30) << " " << setw(11) << "Subtotal: " << setw(8) << right << setprecision(2) << subtotal << endl;
+   cout << left << setw(30) << " " << setw(11) << "Tax: " << setw(8) << right << setprecision(2) << tax << endl;
+   cout << left << setw(30) << " " << setw(11) << "Total: " << setw(8) << right << setprecision(2) << total << endl;
+   cout << "Enter R to return to main menu or Q to quit the program: ";
+   cin >> option;
+   if (option == 'R')
+      mainMenu(list);
+   else
+      cout << "Thank you for using the program!" << endl;
+}
+
+void inventoryMenu(Inventory &list)
+{
+   int option;
+   string item;
+   book *bk;
+   book b;
+   string data;
+   cout << setw(30) << "Inventory Module" << endl << endl;
+   cout << setw(30) << "Inventory Menu" << endl;
+   cout << "1. Look up infomation of a book" << endl;
+   cout << "2. Add a new book to inventory" << endl;
+   cout << "3. Edit a book in inventory" << endl;
+   cout << "4. Delete a book in inventory" << endl;
+   cout << "5. Return the main menu" << endl;
+   cout << "Enter your option: ";
+   cin >> option;
+   cout << endl;
+   switch (option)
+   {
+   case 1:
+      cout << "Enter book title or ISBN: ";
+      cin.ignore();
+      getline(cin, item);
+      if (is_number(item))
+         bk = list.searchByISBN(item);
+      else
+         bk = list.searchByTitle(item);
+      cout << endl;
+      if (bk)
+         displayBook(*bk);
+      else
+         cout << "Haven't seen this book in the inventory!" << endl << endl;
+      break;
+   case 2:
+      int qty;
+      double price;
+      cout << "Enter book's information" << endl;
+      cout << "ISBN: ";
+      cin.ignore();
+      getline(cin, data);
+      b.setISBN(data);
+      cout << "Title: ";
+      getline(cin, data);
+      b.settitle(data);
+      cout << "Author: ";
+      getline(cin, data);
+      b.setauthor(data);
+      cout << "Publisher: ";
+      getline(cin, data);
+      b.setpublisher(data);
+      cout << "Date Added (mm/dd/yyyy): ";
+      getline(cin, data);
+      b.setdateAdded(data);
+      cout << "Quantity-on-hand: ";
+      cin >> qty;
+      b.setqtyonHand(qty);
+      cout << "Wholesale Cost: ";
+      cin >> price;
+      b.setwholesaleCost(price);
+      cout << "Retail Price: ";
+      cin >> price;
+      b.setretailPrice(price);
+      list.addBook(b);
+      cout << endl << "Add book complete!" << endl;
+      break;
+   case 3:
+      cout << "Enter book title or ISBN: ";
+      cin.ignore();
+      getline(cin, item);
+      if (is_number(item))
+         bk = list.searchByISBN(item);
+      else
+         bk = list.searchByTitle(item);
+      cout << endl;
+      if (bk)
+         editBook(*bk);
+      else
+         cout << "Haven't seen this book in the inventory!" << endl << endl;
+      break;
+   case 4:
+      cout << "Enter book title or ISBN: ";
+      cin.ignore();
+      getline(cin, item);
+      if (is_number(item))
+         bk = list.searchByISBN(item);
+      else
+         bk = list.searchByTitle(item);
+      cout << endl;
+      if (bk)
+      {
+         list.removeBook(bk);
+         cout << "Delete complete!" << endl;
+      }
+      else
+         cout << "Haven't seen this book in the inventory!" << endl << endl;
+      break;
+   case 5:
+      mainMenu(list);
+      return;
+   default:
+      cout << "You entered wrong option! Please try again!" << endl << endl;
+      inventoryMenu(list);
+      break;
+   }
+   system("pause");
+   cout << endl;
+   inventoryMenu(list);
+}
+
+void editBook(book& b)
+{
+   int opt, qty;
+   char option;
+   double price;
+   string data;
+
+   cout << "Which one do you want to edit?" << endl
+      << "1. ISBN" << endl
+      << "2. Title" << endl
+      << "3. Author" << endl
+      << "4. Publisher" << endl
+      << "5. Date Added" << endl
+      << "6. Quantity-on-hand" << endl
+      << "7. Wholesale Cost" << endl
+      << "8. Retail Price" << endl
+      << "9. Return to the Inventory Menu"
+      << "Enter your option: ";
+   cin >> opt;
+   switch (opt)
+   {
+   case 1:
+      cout << "Enter new ISBN: ";
+      cin.ignore();
+      getline(cin, data);
+      b.setISBN(data);
+      break;
+   case 2:
+      cout << "Enter new Title: ";
+      cin.ignore();
+      getline(cin, data);
+      b.settitle(data);
+      break;
+   case 3:
+      cout << "Enter new Author: ";
+      cin.ignore();
+      getline(cin, data);
+      b.setauthor(data);
+      break;
+   case 4:
+      cout << "Enter new Publisher: ";
+      cin.ignore();
+      getline(cin, data);
+      b.setpublisher(data);
+      break;
+   case 5:
+      cout << "Enter new Date Added (mm/dd/yyyy): ";
+      cin.ignore();
+      getline(cin, data);
+      b.setdateAdded(data);
+      break;
+   case 6:
+      cout << "Enter new Quantity-on-hand: ";
+      cin >> qty;
+      b.setqtyonHand(qty);
+      break;
+   case 7:
+      cout << "Enter new Wholesale Cost: ";
+      cin >> price;
+      b.setwholesaleCost(price);
+      break;
+   case 8:
+      cout << "Enter new Retail Price: ";
+      cin >> price;
+      b.setretailPrice(price);
+      break;
+   case 9:
+      return;
+   default:
+      cout << "You entered wrong option! Please try again!" << endl;
+      break;
+   }
+   cout << "Do you want to edit more?" << endl
+      << "Enter Y if you want or N to return Inventory Menu: ";
+   cin >> option;
+   if (option == 'Y' || option == 'y')
+      editBook(b);
+}
+
+
+void reportMenu(Inventory &list)
+{
+   int opt;
+   cout << setw(30) << "Report Module" << endl << endl;
+   cout << "1. Inventory Listing" << endl
+      << "2. Inventory Wholesale Value" << endl
+      << "3. Inventory Retail Value" << endl
+      << "4. Listing by Quantity" << endl
+      << "5. Listing by Cost" << endl
+      << "6. Listing by Age" << endl
+      << "7. Return to the Main Menu" << endl;
+   cout << "Enter your option: ";
+   cin >> opt;
+   cout << endl;
+   switch (opt)
+   {
+   case 1:
+      displayList(list);
+      break;
+   case 2:
+      cout << "Inventory Wholesale Value: " << list.getWholesaleValue() << endl;
+      break;
+   case 3:
+      cout << "Inventory Retail Value: " << list.getRetailValue() << endl;
+      break;
+   case 4:
+      list.sortByQty();
+      cout << "Complete sorted from high to low qty!" << endl;
+      break;
+   case 5:
+      list.sortByCost();
+      cout << "Complete sorted from high to low cost!" << endl;
+      break;
+   case 6:
+      list.sortByAge();
+      cout << "Complete sorted from high to low age!" << endl;
+      break;
+   case 7:
+      mainMenu(list);
+      return;
+   default:
+      break;
+   }
+   system("pause");
+   cout << endl;
+   reportMenu(list);
+}
+
+bool is_number(const string &s) {
+   return !s.empty() && all_of(s.begin(), s.end(), ::isdigit);
+}
+
+void displayBook(book b)
+{
+   cout << "ISBN: " << b.getISBN() << endl;
+   cout << "Title: " << b.gettitle() << endl;
+   cout << "Author: " << b.getauthor() << endl;
+   cout << "Publisher: " << b.getpublisher() << endl;
+   cout << "Date Added: " << b.getdateAdded() << endl;
+   cout << "Qty on Hand: " << b.getqtyonHand() << endl;
+   cout << "Wholesale Cost: " << b.getwholesaleCost() << endl;
+   cout << "Retail Price: " << b.getretailPrice() << endl;
+}
+
+void displayList(Inventory &list)
+{
+   book *temp = list.returnHead();
+   while (temp)
+   {
+      displayBook(*temp);
+      cout << endl;
+      temp = temp->getnextptr();
+   }
 }
 
 void menu()

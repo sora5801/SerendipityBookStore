@@ -14,10 +14,12 @@ private:
    int qtyonHand;
    double wholesaleCost;
    double retailPrice;
-   book *next;
+   book *next; //dynamically allocate next
 public:
+   //Constructors
    book();
 
+   //Accessors
    void setISBN(std::string);
    void settitle(std::string);
    void setauthor(std::string);
@@ -29,6 +31,7 @@ public:
    void setnextptr(book*);
    void setBook(std::string, std::string, std::string, std::string, std::string, int, double, double, book*);
 
+   //mutators
    std::string getISBN();
    std::string gettitle();
    std::string getauthor();
@@ -39,9 +42,11 @@ public:
    double getretailPrice();
    book* getnextptr();
 
+   //Bool functions
    bool operator==(book&);
    bool operator!=(book&);
    book operator=(book&);
 
+   //Destructor
    ~book();
 };
