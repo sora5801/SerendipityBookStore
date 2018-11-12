@@ -122,3 +122,38 @@ void editmenu()
    cout << endl;
 
 }
+
+void invmenu() //Inventory Database function
+
+{
+
+   int ch;
+
+   do
+
+   {
+
+      cout << "\n****************************************" << endl;
+
+      cout << "\t Serendipity Booksellers" << endl;
+
+      cout << "******************************************" << endl;
+
+      cout << "\t Inventory Database Module" << endl;
+
+      cout << "\t ==========================" << endl;
+
+      cout << "\t 1.AddBook Function" << endl;
+
+      cout << "\t 2.LookupBook Function" << endl;
+
+      cout << "\t 3.EditBook Function" << endl;
+
+      cout << "\t 4.DeleteBook Function" << endl;
+
+      cout << "\t 5.Return to main menu" << endl;
+
+      cout << endl;
+
+      cout << "Enter ur choice" << endl;
+   }
