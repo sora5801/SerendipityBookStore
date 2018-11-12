@@ -1,7 +1,5 @@
 #include "book.h"
 
-
-
 book::book()
 {
    /*ISBN = nullptr;

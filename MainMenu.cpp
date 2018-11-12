@@ -1,12 +1,28 @@
 #include <iostream>
 #include <iomanip>
-
+#include "book.h"
+#include "Inventory.h"
 using namespace std;
 
 void menu();
+void cashier();
+void setbookdetails();
+void editmenu();
+void invmenu();
+
+void mainMenu(Inventory&);
+
+void cashierMenu(Inventory&);
+
+void inventoryMenu(Inventory&);
+
+void reportMenu(Inventory&);
+
+
 int main()
 {
    menu();
+   mainMenu();
 }
 
 void menu()
@@ -33,6 +49,38 @@ void menu()
 
 }
 
+void mainMenu(Inventory& list)
+{
+   char option;
+   cout << setw(30) << "Main Menu" << endl << endl;
+   cout << "Press 1 to..." << endl
+      << "Press 2 to..." << endl
+      << "Press 3 to..." << endl
+      << "Press 4 to quit the program" << endl
+      << "Enter your option: ";
+   cin >> option;
+   switch (option)
+   {
+   case '1':
+      cashierMenu(list);
+      break;
+   case '2':
+      inventoryMenu(list);
+      break;
+   case '3':
+      reportMenu(list);
+      break;
+   case '4':
+      cout << "Thank you for using the program!" << endl;
+      break;
+   default:
+      cout << "You entered wrong option! Please try again!" << endl;
+      mainMenu(list);
+      break;
+   }
+
+}
+/*
 void cashier()
 
 {
@@ -123,8 +171,7 @@ void editmenu()
 
 }
 
-void invmenu() //Inventory Database function
-
+void invmenu() 
 {
 
    int ch;
@@ -157,3 +204,4 @@ void invmenu() //Inventory Database function
 
       cout << "Enter ur choice" << endl;
    }
+*/

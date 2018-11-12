@@ -1,7 +1,5 @@
 #include "Inventory.h"
 
-
-
 Inventory::Inventory()
 {
    head = nullptr;
