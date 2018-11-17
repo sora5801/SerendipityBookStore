@@ -1,10 +1,17 @@
 #include "Inventory.h"
 
+
+
 Inventory::Inventory()
 {
    head = nullptr;
    tail = nullptr;
    count = 0;
+}
+
+int Inventory::getCount()
+{
+   return count;
 }
 
 void Inventory::addBook(book bk)
@@ -29,32 +36,33 @@ void Inventory::addBook(book bk)
 void Inventory::removeBook(book* bk)
 {
    book *temp = head;
-   if (*head == *bk)
+   if (bk)
    {
-      if (tail == head)
-         tail = nullptr;
-      head = head->getnextptr();
-      temp->setnextptr(nullptr);
-      delete temp;
-      count--;
-   }
-   else
-   {
-      while (*(temp->getnextptr()) != *bk && temp != nullptr)
+      if (*head == *bk)
       {
-         temp = temp->getnextptr();
-      }
-      if (temp->getnextptr() == tail)
-      {
-         tail = temp;
-         tail->setnextptr(nullptr);
+         if (tail == head)
+            tail = nullptr;
+         head = head->getnextptr();
+         temp->setnextptr(nullptr);
+         delete temp;
+         count--;
       }
       else
-         temp->setnextptr(temp->getnextptr()->getnextptr());
-      count--;
+      {
+         while (*(temp->getnextptr()) != *bk && temp != nullptr)
+         {
+            temp = temp->getnextptr();
+         }
+         if (temp->getnextptr() == tail)
+         {
+            tail = temp;
+            tail->setnextptr(nullptr);
+         }
+         else
+            temp->setnextptr(temp->getnextptr()->getnextptr());
+         count--;
+      }
    }
-
-
 }
 
 book* Inventory::searchByISBN(std::string isbn)
@@ -81,15 +89,92 @@ book* Inventory::searchByTitle(std::string name)
    return nullptr;
 }
 
-void Inventory::purchaseBook(book* bk)
+double Inventory::getWholesaleValue()
 {
-   if (bk->getqtyonHand() > 0)
+   book *temp = head;
+   double total = 0;
+   while (temp)
    {
-      bk->setqtyonHand(bk->getqtyonHand() - 1);
+      total += temp->getwholesaleCost() * temp->getqtyonHand();
+      temp = temp->getnextptr();
    }
-   else
+   return total;
+}
+
+
+double Inventory::getRetailValue()
+{
+   book *temp = head;
+   double total = 0;
+   while (temp)
    {
-      removeBook(bk);
+      total += temp->getretailPrice() * temp->getqtyonHand();
+      temp = temp->getnextptr();
+   }
+   return total;
+}
+
+void Inventory::sortByQty()
+{
+   for (book* i = head; i != nullptr && i->getnextptr() != nullptr; i = i->getnextptr())
+   {
+      book *max;
+      max = i;
+      for (book *j = i->getnextptr(); j != nullptr; j = j->getnextptr())
+      {
+         if (j->compareByQty(*max) > 0)
+            max = j;
+      }
+      if (max != i)
+         i->swapData(*max);
+   }
+}
+
+void Inventory::sortByCost()
+{
+   for (book* i = head; i != nullptr && i->getnextptr() != nullptr; i = i->getnextptr())
+   {
+      book *max;
+      max = i;
+      for (book *j = i->getnextptr(); j != nullptr; j = j->getnextptr())
+      {
+         if (j->compareByCost(*max) > 0)
+            max = j;
+      }
+      if (max != i)
+         i->swapData(*max);
+   }
+}
+
+void Inventory::sortByAge()
+{
+   for (book* i = head; i != nullptr && i->getnextptr() != nullptr; i = i->getnextptr())
+   {
+      book *max;
+      max = i;
+      for (book *j = i->getnextptr(); j != nullptr; j = j->getnextptr())
+      {
+         if (j->compareByAge(*max) > 0)
+            max = j;
+      }
+      if (max != i)
+         i->swapData(*max);
+   }
+}
+
+book* Inventory::returnHead()
+{
+   return head;
+}
+
+void displayList(const Inventory &list)
+{
+   book *temp = list.head;
+   while (temp)
+   {
+      displayBook(*temp);
+      std::cout << std::endl;
+      temp = temp->getnextptr();
    }
 }
 

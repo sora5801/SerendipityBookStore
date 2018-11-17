@@ -1,5 +1,3 @@
-#include <iostream>
-#include <algorithm>
 #include <time.h>
 #include <iomanip>
 #include <fstream>
@@ -10,22 +8,13 @@ using namespace std;
 #define TAX_RATE 0.1
 
 void inputInventory(Inventory&);
-
 void outputInventory(Inventory&);
-
 void mainMenu(Inventory&);
-
 void cashierMenu(Inventory&);
-
 void inventoryMenu(Inventory&);
-
 void editBook(book&);
-
 void reportMenu(Inventory&);
-
 bool is_number(const string&);
-void displayBook(book);
-void displayList(Inventory&);
 
 int main()
 {
@@ -73,17 +62,10 @@ void outputInventory(Inventory &list)
       book * arr = list.returnHead();
       while (arr)
       {
-         outFile << arr->getISBN() << endl;
-         outFile << arr->gettitle() << endl;
-         outFile << arr->getauthor() << endl;
-         outFile << arr->getpublisher() << endl;
-         outFile << arr->getdateAdded() << endl;
-         outFile << arr->getqtyonHand() << endl;
-         outFile << arr->getwholesaleCost() << endl;
          if (arr->getnextptr())
-            outFile << arr->getretailPrice() << endl;
+            outFile << *arr << endl;
          else
-            outFile << arr->getretailPrice();
+            outFile << *arr;
          arr = arr->getnextptr();
       }
    }
@@ -93,7 +75,12 @@ void outputInventory(Inventory &list)
 void mainMenu(Inventory& list)
 {
    int option;
-   cout << setw(30) << "Main Menu" << endl << endl;
+   cout << "****************************************" << endl;
+   cout << "\t Serendipity Booksellers" << endl;
+   cout << "****************************************" << endl;
+   cout << "\t MAIN MENU " << endl;
+   cout << "\t --------- " << endl;
+
    cout << "1. Cashier Module" << endl
       << "2. Inventory Database Module" << endl
       << "3. Report Module" << endl
@@ -130,8 +117,12 @@ void cashierMenu(Inventory &list)
    double subtotal = 0, tax, total;
    _strdate_s(date);
    book *bk;
-   cout << "Cashier Module" << endl << endl;
-   cout << "Team 6 Book Seller" << endl << endl << "Date: " << date << endl << endl;
+   cout << "\n****************************************" << endl;
+   cout << "\t Serendipity Booksellers" << endl;
+   cout << "\t Date: " << date << endl;
+   cout << "******************************************" << endl;
+   cout << "\n\t Cashier Module is selected" << endl;
+   cout << "\t ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
    cout << left << setw(5) << "Qty"
       << setw(10) << "ISBN"
       << setw(30) << "Title"
@@ -192,8 +183,13 @@ void inventoryMenu(Inventory &list)
    book *bk;
    book b;
    string data;
-   cout << setw(30) << "Inventory Module" << endl << endl;
-   cout << setw(30) << "Inventory Menu" << endl;
+   cout << "\n****************************************" << endl;
+   cout << "\t Serendipity Booksellers" << endl;
+   cout << "******************************************" << endl;
+   cout << "\t Inventory Database Module" << endl;
+   cout << "\t =========================" << endl;
+
+
    cout << "1. Look up infomation of a book" << endl;
    cout << "2. Add a new book to inventory" << endl;
    cout << "3. Edit a book in inventory" << endl;
@@ -225,6 +221,28 @@ void inventoryMenu(Inventory &list)
       cout << "ISBN: ";
       cin.ignore();
       getline(cin, data);
+      if (bk = list.searchByISBN(data))
+      {
+         char check = '0';
+         cout << "The book with ISBN " << data << " is already in the inventory!" << endl;
+         while (check == '0')
+         {
+            cout << "Enter E if you want to edit the book or R to go back Inventory menu: ";
+            cin >> check;
+            if (check == 'Y' || check == 'y')
+               editBook(*bk);
+            else if (check == 'R' || check == 'r')
+            {
+               inventoryMenu(list);
+               return;
+            }
+            else
+            {
+               cout << "You entered wrong option!" << endl;
+               check = '0';
+            }
+         }
+      }
       b.setISBN(data);
       cout << "Title: ";
       getline(cin, data);
@@ -377,7 +395,12 @@ void editBook(book& b)
 void reportMenu(Inventory &list)
 {
    int opt;
-   cout << setw(30) << "Report Module" << endl << endl;
+   cout << "\n***************************************" << endl;
+   cout << "\t Serendipity Booksellers" << endl;
+   cout << "***************************************" << endl;
+   cout << "\t Reports Module" << endl;
+   cout << "\t ==============" << endl;
+
    cout << "1. Inventory Listing" << endl
       << "2. Inventory Wholesale Value" << endl
       << "3. Inventory Retail Value" << endl
@@ -423,86 +446,16 @@ void reportMenu(Inventory &list)
 }
 
 bool is_number(const string &s) {
-   return !s.empty() && all_of(s.begin(), s.end(), ::isdigit);
-}
-
-void displayBook(book b)
-{
-   cout << "ISBN: " << b.getISBN() << endl;
-   cout << "Title: " << b.gettitle() << endl;
-   cout << "Author: " << b.getauthor() << endl;
-   cout << "Publisher: " << b.getpublisher() << endl;
-   cout << "Date Added: " << b.getdateAdded() << endl;
-   cout << "Qty on Hand: " << b.getqtyonHand() << endl;
-   cout << "Wholesale Cost: " << b.getwholesaleCost() << endl;
-   cout << "Retail Price: " << b.getretailPrice() << endl;
-}
-
-void displayList(Inventory &list)
-{
-   book *temp = list.returnHead();
-   while (temp)
+   bool check = true;
+   if (!s.empty())
    {
-      displayBook(*temp);
-      cout << endl;
-      temp = temp->getnextptr();
+      for (size_t i = 0; i < s.length(); i++)
+      {
+         if (!isdigit(s[i]))
+            check = false;
+      }
    }
-}
-
-void menu()
-
-{
-
-   cout << "\n****************************************" << endl;
-
-   cout << "\t Serendipity Booksellers" << endl;
-
-   cout << "******************************************" << endl;
-
-   cout << "\t MAIN MENU " << endl;
-
-   cout << "\t ---------- " << endl;
-
-   cout << "\t 1.Cashier Module" << endl;
-
-   cout << "\t 2.Inventory Database Module" << endl;
-
-   cout << "\t 3.Report Module" << endl;
-
-   cout << "\t 4.Exit" << endl;
-
-}
-
-void mainMenu(Inventory& list)
-{
-   char option;
-   cout << setw(30) << "Main Menu" << endl << endl;
-   cout << "Press 1 to..." << endl
-      << "Press 2 to..." << endl
-      << "Press 3 to..." << endl
-      << "Press 4 to quit the program" << endl
-      << "Enter your option: ";
-   cin >> option;
-   switch (option)
-   {
-   case '1':
-      cashierMenu(list);
-      break;
-   case '2':
-      inventoryMenu(list);
-      break;
-   case '3':
-      reportMenu(list);
-      break;
-   case '4':
-      cout << "Thank you for using the program!" << endl;
-      break;
-   default:
-      cout << "You entered wrong option! Please try again!" << endl;
-      mainMenu(list);
-      break;
-   }
-
+   return check;
 }
 /*
 void cashier()

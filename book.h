@@ -1,7 +1,10 @@
 #pragma once
+
+//#ifndef __BOOK_H__
 //#define __BOOK_H__
 
 #include <string>
+#include <iostream>
 
 class book
 {
@@ -14,12 +17,11 @@ private:
    int qtyonHand;
    double wholesaleCost;
    double retailPrice;
-   book *next; //dynamically allocate next
+   book *next;
 public:
-   //Constructors
-   book();
+   book(std::string isbn = "", std::string tt = "", std::string aut = "",
+      std::string pub = "", std::string date = "", int qty = 0, double cost = 0, double price = 0);
 
-   //Accessors
    void setISBN(std::string);
    void settitle(std::string);
    void setauthor(std::string);
@@ -31,7 +33,6 @@ public:
    void setnextptr(book*);
    void setBook(std::string, std::string, std::string, std::string, std::string, int, double, double, book*);
 
-   //mutators
    std::string getISBN();
    std::string gettitle();
    std::string getauthor();
@@ -42,11 +43,18 @@ public:
    double getretailPrice();
    book* getnextptr();
 
-   //Bool functions
-   bool operator==(book&);
-   bool operator!=(book&);
-   book operator=(book&);
+   bool operator==(const book&);
+   bool operator!=(const book&);
+   book operator=(const book&);
 
-   //Destructor
+   void swapData(book&);
+
+   int compareByQty(const book&);
+   double compareByCost(const book&);
+   int compareByAge(const book&);
+
+   friend std::ostream& operator<<(std::ostream&, const book&);
+   friend void displayBook(const book&);
+
    ~book();
 };

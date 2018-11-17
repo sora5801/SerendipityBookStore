@@ -1,6 +1,4 @@
 #pragma once
-
-#pragma once
 #include "book.h"
 class Inventory
 {
@@ -10,10 +8,17 @@ private:
    int count;
 public:
    Inventory();
+   int getCount();
    void addBook(book);
    void removeBook(book*);
    book* searchByISBN(std::string);
    book* searchByTitle(std::string);
-   void purchaseBook(book*);
+   double getWholesaleValue();
+   double getRetailValue();
+   void sortByQty();
+   void sortByCost();
+   void sortByAge();
+   book* returnHead();
+   friend void displayList(const Inventory&);
    ~Inventory();
 };
