@@ -55,6 +55,7 @@ public:
 
    friend std::ostream& operator<<(std::ostream&, const book&);
    friend void displayBook(const book&);
-
+   friend class Inventory;
+   friend class Report;
    ~book();
 };

@@ -17,8 +17,10 @@ public:
    double getRetailValue();
    void sortByQty();
    void sortByCost();
-   void sortByAge();
+   void sortByAge(); 
    book* returnHead();
    friend void displayList(const Inventory&);
+   friend class Report;
+   friend class book;
    ~Inventory();
 };

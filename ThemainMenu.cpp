@@ -1,37 +1,9 @@
-#include <time.h>
-#include <iomanip>
-#include <fstream>
-#include "Inventory.h"
-#include "Report.h"
 #include "ThemainMenu.h"
-//using namespace std;
+using namespace std;
 
-// #define TAX_RATE 0.1
+#define TAX_RATE 0.1
 
-/*void inputInventory(Inventory&);
-void outputInventory(Inventory&);
-void mainMenu(Inventory&);
-void mainMenu(Report&);
-void cashierMenu(Inventory&);
-void inventoryMenu(Inventory&);
-void editBook(book&);
-void reportMenu(Inventory&);
-bool is_number(const string&);
-*/
-int main()
-{
-   Inventory list;
-  // Report list2;
-  // inputInventory(list);
- //  mainMenu(list);
-  // outputInventory(list);
-   ThemainMenu main;
-   main.mainMenu(list);
-   system("pause");
-   return 0;
-}
-/*
-void inputInventory(Inventory &list)
+void ThemainMenu::inputInventory(Inventory &list)
 {
    ifstream inFile;
    inFile.open("Inventory.txt");
@@ -58,7 +30,7 @@ void inputInventory(Inventory &list)
    inFile.close();
 }
 
-void outputInventory(Inventory &list)
+void ThemainMenu::outputInventory(Inventory &list)
 {
    ofstream outFile;
    outFile.open("Inventory.txt");
@@ -77,7 +49,7 @@ void outputInventory(Inventory &list)
    outFile.close();
 }
 
-void mainMenu(Inventory& list)
+void ThemainMenu::mainMenu(Inventory& list)
 {
    int option;
    cout << "****************************************" << endl;
@@ -114,7 +86,7 @@ void mainMenu(Inventory& list)
 
 }
 
-void cashierMenu(Inventory &list)
+void ThemainMenu::cashierMenu(Inventory &list)
 {
    string item;
    int n;
@@ -181,7 +153,7 @@ void cashierMenu(Inventory &list)
       cout << "Thank you for using the program!" << endl;
 }
 
-void inventoryMenu(Inventory &list)
+void ThemainMenu::inventoryMenu(Inventory &list)
 {
    int option;
    string item;
@@ -317,7 +289,7 @@ void inventoryMenu(Inventory &list)
    inventoryMenu(list);
 }
 
-void editBook(book& b)
+void ThemainMenu::editBook(book& b)
 {
    int opt, qty;
    char option;
@@ -397,7 +369,7 @@ void editBook(book& b)
 }
 
 
-void reportMenu( Report &list)
+void ThemainMenu::reportMenu(Inventory &list)
 {
    int opt;
    cout << "\n***************************************" << endl;
@@ -450,7 +422,7 @@ void reportMenu( Report &list)
    reportMenu(list);
 }
 
-bool is_number(const string &s) {
+bool ThemainMenu::is_number(const string &s) {
    bool check = true;
    if (!s.empty())
    {
@@ -462,171 +434,3 @@ bool is_number(const string &s) {
    }
    return check;
 }
-*/
-/*
-void cashier()
-
-{
-
-   cout << "\n****************************************" << endl;
-
-   cout << "\t Serendipity Booksellers" << endl;
-
-   cout << "******************************************" << endl;
-
-   cout << "\n\t Cashier Module is selected" << endl;
-
-   cout << "\t ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
-
-   cout<<"\n\n Thank you for shopping at Serendipity!!! Have a nice day\n\n"<<endl;
-
-}
-
-void setbookdetails()
-
-{
-
-   int i = size;
-
-   cout << "Enter book info for book " << i << endl;
-
-   cout << "Enter title of the book" << endl;
-
-   cin >> title[i];
-
-   cout << "Enter ISBN: " << endl;
-
-   cin >> isbn[i];
-
-   cout << "Enter the author name" << endl;
-
-   cin >> author[i];
-
-   cout << "Enter the publisher name" << endl;
-
-   cin >> publisher[i];
-
-   cout << "Enter the date in MM-DD-YYYY format" << endl;
-
-   cin >> date[i];
-
-   cout << "Enter the quantity on hand" << endl;
-
-   cin >> qty[i];
-
-   cout << "Enter the whole sale price of each book" << endl;
-
-   cin >> wholesale[i];
-
-   cout << "Enter the retail price of the book" << endl;
-
-   cin >> retail[i];
-
-   cout << endl;
-
-}
-
-void editmenu()
-
-{
-
-   cout << "\t Edit menu fields are" << endl;
-
-   cout << "===============================" << endl;
-
-   cout << "\t 1.Title" << endl;
-
-   cout << "\t 2.ISBN" << endl;
-
-   cout << "\t 3.Author" << endl;
-
-   cout << "\t 4.Publisher" << endl;
-
-   cout << "\t 5.Date added" << endl;
-
-   cout << "\t 6.Quantity on hand" << endl;
-
-   cout << "\t 7.Wholesale cost of the book" << endl;
-
-   cout << "\t 8.Retail price of the book" << endl;
-
-   cout << "\t 9.Exit from edit menu" << endl;
-
-   cout << endl;
-
-}
-
-void invmenu() 
-{
-
-   int ch;
-
-   do
-
-   {
-
-      cout << "\n****************************************" << endl;
-
-      cout << "\t Serendipity Booksellers" << endl;
-
-      cout << "******************************************" << endl;
-
-      cout << "\t Inventory Database Module" << endl;
-
-      cout << "\t ==========================" << endl;
-
-      cout << "\t 1.AddBook Function" << endl;
-
-      cout << "\t 2.LookupBook Function" << endl;
-
-      cout << "\t 3.EditBook Function" << endl;
-
-      cout << "\t 4.DeleteBook Function" << endl;
-
-      cout << "\t 5.Return to main menu" << endl;
-
-      cout << endl;
-
-      cout << "Enter ur choice" << endl;
-   }
-
-   void reports()
-
-   {
-
-   int ch;
-
-   cout << endl;
-
-   do
-
-   {
-
-   cout << "***************************************" << endl;
-
-   cout << "\t Serendipity Booksellers" << endl;
-
-   cout << "***************************************" << endl;
-
-   cout << "\t Reports Module" << endl;
-
-   cout << "\t ================" << endl;
-
-   cout << "\t 1.Inventory Listing" << endl;
-
-   cout << "\t 2.Inventory WholeSale value" << endl;
-
-   cout << "\t 3.Inventory Retail Value" << endl;
-
-   cout << "\t 4.Listing by Quantity" << endl;
-
-   cout << "\t 5.Listing by Cost" << endl;
-
-   cout << "\t 6.Listing by Age" << endl;
-
-   cout << "\t 7.Return to the main menu" << endl;
-
-   cout << "Enter ur choice" << endl;
-   }
-
-*/
