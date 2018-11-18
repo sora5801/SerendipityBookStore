@@ -1,40 +1,103 @@
-001
-ABC
-PL
-DA
+9780374275631
+Thinking, Fast and Slow
+Daniel Kahneman
+Farrar, Straus and Giroux
 11/11/2017
-15
-20
-50
-003
-XYZ
-PL
-DA
+19
+20.40
+35.00
+9780316017923
+Outliers: The Story of Success
+Malcolm Gladwell
+Little, Brown and Company
 11/15/2017
-15
-30
-55
-002
-DEF
-PL
-DA
+5
+15.47
+26.00
+9780061854545
+Predictably Irrational: The Hidden Forces That Shape Our Decisions
+Dr. Dan Ariely 
+Harper; Revised & enlarged edition
 12/11/2017
-15
-30
-60
-004
-MNO
-Phuoc Le
-DA
+17
+20.17
+80.00
+9781627790369
+Algorithms to Live By: The Computer Science of Human Decisions
+Brian Christian & Tom Griffiths 
+Henry Holt and Co.
 11/11/2018
-20
-30
-55
-005
-GHK
-PL
-DA
-11/12/2018
-15
-50
-70
+13
+18.74
+478.00
+9780735611313
+Code: The Hidden Language of Computer Hardware and Software
+Charles Petzold
+Microsoft Press; 1 edition
+6/06/06
+23
+25.47
+0735619670
+Code Complete: A Practical Handbook of Software Construction, Second Edition 
+Steve McConnell
+Microsoft Press; 2nd edition
+5/21/2011
+7
+39.22
+1800.00
+0201633612
+Design Patterns: Elements of Reusable Object-Oriented Software
+Erich Gamma
+Addison-Wesley Professional; 1 edition
+12/21/2012
+29
+54.47
+200.00
+9780132350884
+Clean Code: A Handbook of Agile Software Craftsmanship
+Robert C. Martin
+Prentice Hall; 1 edition 
+2/17/2004
+31
+46.06
+300.00
+9780201616224
+The Pragmatic Programmer: From Journeyman to Master
+Andrew Hunt
+Addison-Wesley Professional; 1 edition 
+7/12/1999
+37
+43.17
+999.99
+9780201835953
+The Mythical Man-Month: Essays on Software Engineering, Anniversary Edition 
+Frederick P. Brooks Jr.
+Addison-Wesley Professional; Anniversary edition
+12/30/2006
+41
+36.70
+888.00
+9781430219484
+Coders at Work: Reflections on the Craft of Programming
+Peter Seibel
+Apress; 1st ed. edition
+11/11/2014
+43
+22.25
+777.79
+0262510871
+Structure and Interpretation of Computer Programs - 2nd Edition
+Harold Abelson
+The MIT Press; second edition edition
+8/12/2016
+47
+37.75
+567.89
+132854639X
+AI Superpowers: China, Silicon Valley, and the New World Order
+Kai-Fu Lee
+Houghton Mifflin Harcourt
+10/19/2018
+53
+16.50
+123.45
