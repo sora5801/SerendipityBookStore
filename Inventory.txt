@@ -34,14 +34,15 @@ Henry Holt and Co.
 Code: The Hidden Language of Computer Hardware and Software
 Charles Petzold
 Microsoft Press; 1 edition
-6/06/06
+06/06/2006
 23
 25.47
+9999.99
 0735619670
 Code Complete: A Practical Handbook of Software Construction, Second Edition 
 Steve McConnell
 Microsoft Press; 2nd edition
-5/21/2011
+05/21/2011
 7
 39.22
 1800.00
@@ -57,7 +58,7 @@ Addison-Wesley Professional; 1 edition
 Clean Code: A Handbook of Agile Software Craftsmanship
 Robert C. Martin
 Prentice Hall; 1 edition 
-2/17/2004
+02/17/2004
 31
 46.06
 300.00
@@ -65,7 +66,7 @@ Prentice Hall; 1 edition
 The Pragmatic Programmer: From Journeyman to Master
 Andrew Hunt
 Addison-Wesley Professional; 1 edition 
-7/12/1999
+07/12/1999
 37
 43.17
 999.99
@@ -89,7 +90,7 @@ Apress; 1st ed. edition
 Structure and Interpretation of Computer Programs - 2nd Edition
 Harold Abelson
 The MIT Press; second edition edition
-8/12/2016
+08/12/2016
 47
 37.75
 567.89
@@ -137,7 +138,7 @@ Portfolio
 The Capitalist Code: It Can Save Your Life and Make You Very Rich
 Ben Stein
 Humanix Books
-9/26/2017
+09/26/2017
 71
 13.59
 8000.00
@@ -185,7 +186,7 @@ Penguin Books; 1 edition
 Too Big to Fail: The Inside Story of How Wall Street and Washington Fought to Save the Financial System--and Themselves
 Andrew Ross Sorkin 
 Penguin Books; Updated edition
-9/20/2012
+09/20/2012
 97
 14.73
 222.22
