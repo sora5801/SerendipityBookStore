@@ -6,18 +6,18 @@
 #include <string>
 #include "Inventory.h"
 #include "book.h"
-#include "Cashier.h"
-#include "Report.h"
 
-class ThemainMenu : public book, public Inventory
+
+class ThemainMenu : private book, private Inventory
 {
 private:
-   Inventory list;
-   book Book;
+  // Inventory list;
+  // book Book;
 public:
    //Default Constructor
-   //ThemainMenu();
-   void inputInventory(Inventory&);
+  // ThemainMenu();
+  // ThemainMenu(Inventory&);
+    void inputInventory(Inventory&);
    void outputInventory(Inventory&);
    void mainMenu(Inventory&);
    void cashierMenu(Inventory&);

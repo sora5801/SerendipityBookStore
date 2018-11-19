@@ -22,10 +22,12 @@ int main()
 {
    Inventory list;
   // Report list2;
-  // inputInventory(list);
+  //main.inputInventory(list);
  //  mainMenu(list);
-  // outputInventory(list);
+  //main.outputInventory(list);
    ThemainMenu main;
+   main.inputInventory(list);
+   main.outputInventory(list);
    main.mainMenu(list);
    system("pause");
    return 0;

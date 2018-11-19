@@ -30,6 +30,7 @@ void ThemainMenu::inputInventory(Inventory &list)
    inFile.close();
 }
 
+
 void ThemainMenu::outputInventory(Inventory &list)
 {
    ofstream outFile;
