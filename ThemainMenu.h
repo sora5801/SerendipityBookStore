@@ -8,7 +8,7 @@
 #include "book.h"
 
 
-class ThemainMenu : private book, private Inventory
+class ThemainMenu // : public book, public Inventory
 {
 private:
   // Inventory list;

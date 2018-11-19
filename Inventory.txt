@@ -4,8 +4,8 @@ Daniel Kahneman
 Farrar, Straus and Giroux
 11/11/2017
 19
-20.40
-35.00
+20.4
+35
 9780316017923
 Outliers: The Story of Success
 Malcolm Gladwell
@@ -13,7 +13,7 @@ Little, Brown and Company
 11/15/2017
 5
 15.47
-26.00
+26
 9780061854545
 Predictably Irrational: The Hidden Forces That Shape Our Decisions
 Dr. Dan Ariely 
@@ -21,7 +21,7 @@ Harper; Revised & enlarged edition
 12/11/2017
 17
 20.17
-80.00
+80
 9781627790369
 Algorithms to Live By: The Computer Science of Human Decisions
 Brian Christian & Tom Griffiths 
@@ -29,7 +29,7 @@ Henry Holt and Co.
 11/11/2018
 13
 18.74
-478.00
+478
 9780735611313
 Code: The Hidden Language of Computer Hardware and Software
 Charles Petzold
@@ -45,7 +45,7 @@ Microsoft Press; 2nd edition
 05/21/2011
 7
 39.22
-1800.00
+1800
 0201633612
 Design Patterns: Elements of Reusable Object-Oriented Software
 Erich Gamma
@@ -53,7 +53,7 @@ Addison-Wesley Professional; 1 edition
 12/21/2012
 29
 54.47
-200.00
+200
 9780132350884
 Clean Code: A Handbook of Agile Software Craftsmanship
 Robert C. Martin
@@ -61,7 +61,7 @@ Prentice Hall; 1 edition
 02/17/2004
 31
 46.06
-300.00
+300
 9780201616224
 The Pragmatic Programmer: From Journeyman to Master
 Andrew Hunt
@@ -76,8 +76,8 @@ Frederick P. Brooks Jr.
 Addison-Wesley Professional; Anniversary edition
 12/30/2006
 41
-36.70
-888.00
+36.7
+888
 9781430219484
 Coders at Work: Reflections on the Craft of Programming
 Peter Seibel
@@ -100,7 +100,7 @@ Kai-Fu Lee
 Houghton Mifflin Harcourt
 10/19/2018
 53
-16.50
+16.5
 123.45
 1524761419
 Blitzscaling: The Lightning-Fast Path to Building Massively Valuable Companies
@@ -108,8 +108,8 @@ Reid Hoffman
 Currency
 11/01/2018
 57
-16.80
-900.00
+16.8
+900
 0062273205
 The Hard Thing About Hard Things: Building a Business When There Are No Easy Answers 
 Ben Horowitz
@@ -124,8 +124,8 @@ Ray Dalio
 Bridgewater; Boxed Set edition
 11/13/2018
 61
-45.00
-6000.00
+45
+6000
 9780735216358
 Thinking in Bets: Making Smarter Decisions When You Don't Have All the Facts
 Annie Duke
@@ -133,7 +133,7 @@ Portfolio
 04/07/2018
 67
 17.68
-7000.00
+7000
 1630060844
 The Capitalist Code: It Can Save Your Life and Make You Very Rich
 Ben Stein
@@ -141,7 +141,7 @@ Humanix Books
 09/26/2017
 71
 13.59
-8000.00
+8000
 0071800514
 Stocks for the Long Run 5/E: The Definitive Guide to Financial Market Returns & Long-Term Investment Strategies 
 Jeremy J. Siegel
@@ -149,7 +149,7 @@ McGraw-Hill Education; 5 edition
 05/23/2014
 73
 32.22
-5000.00
+5000
 9780393352245
 A Random Walk down Wall Street: The Time-tested Strategy for Successful Investing
 Burton G. Malkiel 
@@ -173,7 +173,7 @@ Apress; 1st ed. edition
 11/17/2012
 87
 29.87
-55.00
+55
 0143116177
 The Ascent of Money: A Financial History of the World
 Niall Ferguson
@@ -196,5 +196,5 @@ Roger Lowenstein
 Random House Trade Paperbacks; Reprint edition
 10/29/2006
 101
-14.30
+14.3
 333.33

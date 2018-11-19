@@ -121,7 +121,7 @@ void ThemainMenu::cashierMenu(Inventory &list)
          bk = list.searchByTitle(item);
       if (bk)
       {
-         if (bk->getqtyonHand() > n)
+         if (bk->getqtyonHand() >= n)
          {
             cout << "Purchase complete!" << endl;
             bk->setqtyonHand(bk->getqtyonHand() - n);
