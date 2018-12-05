@@ -8,7 +8,7 @@
 
 class book
 {
-private:
+protected:
    std::string ISBN;
    std::string title;
    std::string author;

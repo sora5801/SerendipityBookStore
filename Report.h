@@ -2,7 +2,7 @@
 #include "book.h"
 #include "Inventory.h"
 
-class Report:public Inventory
+class Report: public Inventory, public book //Display inheritance
 {
 private:
    book * head;
@@ -10,11 +10,9 @@ private:
 public:
    virtual double getWholesaleValue();
    virtual double getRetailValue();
-   virtual void sortByQty();
+   virtual void sortByQty(); //Displays polymorphism
    virtual void sortByCost();
    virtual void sortByAge();
    friend void displayList(const Report&);
-   friend class Inventory;
-   friend class book;
 }; 
 

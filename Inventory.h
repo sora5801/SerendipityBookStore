@@ -2,7 +2,7 @@
 #include "book.h"
 class Inventory
 {
-private:
+protected:
    book * head;
    book *tail;
    int count;

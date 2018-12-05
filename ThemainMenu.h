@@ -8,15 +8,10 @@
 #include "book.h"
 
 
-class ThemainMenu // : public book, public Inventory
+class ThemainMenu 
 {
-private:
-  // Inventory list;
-  // book Book;
 public:
-   //Default Constructor
-  // ThemainMenu();
-  // ThemainMenu(Inventory&);
+  
     void inputInventory(Inventory&);
    void outputInventory(Inventory&);
    void mainMenu(Inventory&);
@@ -25,7 +20,5 @@ public:
    void editBook(book&);
    void reportMenu(Inventory&);
    bool is_number(const std::string&);
-   //Destructor;
-  // ~ThemainMenu();
 
 };
